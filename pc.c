@@ -1,4 +1,8 @@
+#include <stdlib.h>
 #include <pthread.h>
+#include "eventbuf.h"
+
+struct eventbuf *eb;
 
 int main(int argc, char *argv[]){
     // Parse command line
@@ -11,4 +15,6 @@ int main(int argc, char *argv[]){
     int consumers = atoi(argv[2]);
     int event_production = atoi(argv[3]);
     int event_storage = atoi(argv[4]);
+
+    eb=eventbuf_create();
 }
