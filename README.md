@@ -14,6 +14,8 @@
 
 ## Functions
 `main`
+    `eventbuf_create`: malloc eventbuf and initialize head and tail as NULL
+    `eventbuf_free`: free eventbuf
 
 
 ## Notes
