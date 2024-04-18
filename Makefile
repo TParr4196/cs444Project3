@@ -1,6 +1,6 @@
 CC=gcc
-CCOPTS=-Wall -Wextra -pthread eventbuf.c
-LIBS=
+CCOPTS=-Wall -Wextra -pthread
+LIBS=eventbuf.c
 
 SRCS=$(wildcard *.c)
 TARGETS=$(SRCS:.c=)
