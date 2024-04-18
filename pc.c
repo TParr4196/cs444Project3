@@ -16,5 +16,8 @@ int main(int argc, char *argv[]){
     int event_production = atoi(argv[3]);
     int event_storage = atoi(argv[4]);
 
+    //allocate event buffer
     eb=eventbuf_create();
+
+    eventbuf_free(eb);
 }

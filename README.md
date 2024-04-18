@@ -6,6 +6,8 @@
 
 ## Files
 `pc.c`: Project 3 of cs444 designed to explore use of semaphores through producer/consumer threads.
+`eventbuf.c`: FIFO queue to help manage events
+`eventbuf.h`: Header file and man for `eventbuf.c`
 
 ## Data
 
