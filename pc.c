@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <pthread.h>
 #include "eventbuf.h"
 
@@ -7,12 +7,19 @@ struct eventbuf *eb;
 
 void *producer(void *arg){
     int *id=arg;
+    (void)id;
+
+    return NULL;
 }
 
 void *consumer(void *arg){
     int *id=arg;
+    (void)id;
+
+    return NULL;
 }
 
+//comment structure borrowed from Brian Hall's "reservations.c"
 int main(int argc, char *argv[]){
     //Verify or provide intended usage
     if (argc != 4) {
