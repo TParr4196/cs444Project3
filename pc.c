@@ -47,6 +47,10 @@ int main(int argc, char *argv[]){
         pthread_create(thread + i, NULL, consumer, thread_id + i + producers);
     }
 
+    // Wait for all threads to complete
+    for (int i = 0; i < producers+consumers; i++)
+        pthread_join(thread[i], NULL);
+
     //free event buffer
     eventbuf_free(eb);
 }
