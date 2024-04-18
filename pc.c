@@ -7,16 +7,14 @@ struct eventbuf *eb;
 
 void *producer(void *arg){
     int *id=arg;
-    (void)id;
-    printf("%d",*id);
+    printf("%d\n",*id);
 
     return NULL;
 }
 
 void *consumer(void *arg){
     int *id=arg;
-    (void)id;
-    printf("%d",*id);
+    printf("%d\n",*id);
 
     return NULL;
 }

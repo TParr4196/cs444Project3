@@ -5,13 +5,14 @@ LIBS=eventbuf.c
 SRCS=$(wildcard *.c)
 TARGETS=$(SRCS:.c=)
 
-.PHONY: all clean
+.PHONY: all clean eventbuf
 
 all: $(TARGETS)
 
 clean:
 	rm -f $(TARGETS)
 
+eventbuf.c:
+
 %: %.c
-	$(CC) $(CCOPTS) -o pc pc.c $(LIBS)
-    
+	$(CC) $(CCOPTS) -o $@ $< $(LIBS)
