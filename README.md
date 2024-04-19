@@ -16,6 +16,8 @@
 `main`
     `eventbuf_create`: malloc eventbuf and initialize head and tail as NULL
     `eventbuf_free`: free eventbuf
-
+    `eventbuf_add`: add a new node to the eventbuf
+    `eventbuf_get`: remove a node from the eventbuf
+    `eventbuf_empty`: returns true if the eventbuf is empty
 
 ## Notes
