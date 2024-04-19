@@ -28,8 +28,8 @@ void *producer(void *arg){
         sem_post(mutex);
         sem_post(items);
     }
-    printf("P%d: exiting\n", *id);
     producers--;
+    printf("P%d: exiting\n", *id);
     return NULL;
 }
 
@@ -41,17 +41,16 @@ void *consumer(void *arg){
         //this semaphore ordering waits for an item to enter the queue, grabs the mutex, and then adds a space to the storage when done.
         sem_wait(items);
         sem_wait(mutex);
-        
-        //needed to keep items semaphore from locking threads out on the last item
+        //makes sure 
         if(producers==0){
             sem_post(items);
-            if(eventbuf_empty(eb)!=1){
-                printf("C%d: got event %d\n", *id, eventbuf_get(eb));
+            if(eventbuf_empty(eb)==1){
+                sem_post(mutex);
+                printf("C%d: exiting\n", *id);
+                return NULL;
             }
-        }else{
-            printf("C%d: got event %d\n", *id, eventbuf_get(eb));
         }
-
+        printf("C%d: got event %d\n", *id, eventbuf_get(eb));
         sem_post(mutex);
         sem_post(spaces);
     }
@@ -121,8 +120,13 @@ int main(int argc, char *argv[]){
         pthread_join(thread[i], NULL);
     
     // Wait for all consumers to complete
-    for (int i = consumers; i < producers+consumers; i++)
+    for (int i = producers; i < producers+consumers; i++)
         pthread_join(thread[i], NULL);
+    
+    //free semaphores
+    sem_close(items);
+    sem_close(items);
+    sem_close(items);
 
     //free event buffer
     eventbuf_free(eb);

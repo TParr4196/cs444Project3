@@ -14,6 +14,7 @@
 
 ## Functions
 `main`
+    `sem_open_temp`: 
     `eventbuf_create`: malloc eventbuf and initialize head and tail as NULL
     `eventbuf_free`: free eventbuf
     `eventbuf_add`: add a new node to the eventbuf
