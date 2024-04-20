@@ -41,7 +41,8 @@ void *consumer(void *arg){
         //this semaphore ordering waits for an item to enter the queue, grabs the mutex, and then adds a space to the storage when done.
         sem_wait(items);
         sem_wait(mutex);
-        //makes sure 
+
+        //makes sure all threads are able to exit once items stops getting posted to by producers.
         if(producers==0){
             sem_post(items);
             if(eventbuf_empty(eb)==1){
@@ -122,11 +123,6 @@ int main(int argc, char *argv[]){
     // Wait for all consumers to complete
     for (int i = producers; i < producers+consumers; i++)
         pthread_join(thread[i], NULL);
-    
-    //free semaphores
-    sem_close(items);
-    sem_close(items);
-    sem_close(items);
 
     //free event buffer
     eventbuf_free(eb);

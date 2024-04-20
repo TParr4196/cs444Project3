@@ -14,11 +14,19 @@
 
 ## Functions
 `main`
-    `sem_open_temp`: 
+    `sem_open_temp`: creates a semaphore or returns SEM_FAILED 
+        `sem_open`: opens semaphore
+        `sem_uplink`: marks the semaphore to close when program exits
     `eventbuf_create`: malloc eventbuf and initialize head and tail as NULL
+    `producer`: adds the desired amount of events to the buffer while waiting for space to do so
+        `sem_wait`: waits until a semaphore has space for thread to operate
+        `eventbuf_add`: add a new node to the eventbuf
+        `sem_post`: creates more space for other threads to operate
+    `consumer`: removes events from the buffer once they appear until producers are done producing
+        `sem_wait`
+        `eventbuf_get`: remove a node from the eventbuf
+        `eventbuf_empty`: returns true if the eventbuf is empty
+        `sem_post`
     `eventbuf_free`: free eventbuf
-    `eventbuf_add`: add a new node to the eventbuf
-    `eventbuf_get`: remove a node from the eventbuf
-    `eventbuf_empty`: returns true if the eventbuf is empty
 
 ## Notes
